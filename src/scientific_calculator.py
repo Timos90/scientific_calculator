@@ -1,5 +1,5 @@
 from .custom_ex import IncorrectInputError, DivisionError
-
+import math
 
 class Calculator:
     def add(self, *args: float) -> float:  # type: ignore
@@ -41,3 +41,22 @@ class Calculator:
 
     def cube(self, x: float) -> float:
         return x ** 3
+
+    def square_root(self, x: float) -> float:
+        if x < 0:
+            raise ValueError("Square root of a negative number is undefined")
+        return math.sqrt(x)
+    
+    def natural_logarithm(self, x: float) -> float:
+        if x <= 0:
+            raise ValueError("Natural logarithm is undefined for non-positive numbers")
+        return math.log(x)
+    
+    def sine(self, angle_degrees: float) -> float:
+        return math.sin(math.radians(angle_degrees))
+
+    def cosine(self, angle_degrees: float) -> float:
+        return math.cos(math.radians(angle_degrees))
+
+    def tangent(self, angle_degrees: float) -> float:
+        return math.tan(math.radians(angle_degrees))

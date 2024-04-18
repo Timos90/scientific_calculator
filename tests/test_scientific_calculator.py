@@ -1,4 +1,4 @@
-import unittest
+import unittest,math
 from typing import NoReturn
 
 from src.scientific_calculator import Calculator
@@ -189,6 +189,7 @@ class CalculatorMultTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+
 class CalculatorDivTestCase(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()
@@ -238,6 +239,7 @@ class CalculatorDivTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+
 class CalculatorSquareTestCase(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()
@@ -263,6 +265,7 @@ class CalculatorSquareTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+
 class CalculatorCubeTestCase(unittest.TestCase):
     def setUp(self):
         self.calculator = Calculator()
@@ -285,6 +288,127 @@ class CalculatorCubeTestCase(unittest.TestCase):
         expected_result = 0
         result = self.calculator.cube(x)
         self.assertEqual(result, expected_result)
+
+    def tearDown(self):
+        pass
+
+
+class CalculatorSquareRootTestCase(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_square_root_with_positive_number(self):
+        x = 25
+        expected_result = 5
+        result = self.calculator.square_root(x)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_square_root_with_zero(self):
+        x = 0
+        expected_result = 0
+        result = self.calculator.square_root(x)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_square_root_with_decimal_number(self):
+        x = 2.5
+        expected_result = 1.5811388300841898
+        result = self.calculator.square_root(x)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_square_root_with_negative_number(self):
+        x = -25
+        with self.assertRaises(ValueError):
+            self.calculator.square_root(x)
+
+    def tearDown(self):
+        pass
+
+
+class CalculatorNaturalLogarithmTestCase(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_natural_logarithm_with_positive_number(self):
+        x = 10
+        expected_result = 2.302585092994046
+        result = self.calculator.natural_logarithm(x)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_natural_logarithm_with_decimal_number(self):
+        x = 2.5
+        expected_result = 0.9162907318741551
+        result = self.calculator.natural_logarithm(x)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_natural_logarithm_with_zero(self):
+        x = 0
+        with self.assertRaises(ValueError):
+            self.calculator.natural_logarithm(x)
+
+    def test_natural_logarithm_with_negative_number(self):
+        x = -10
+        with self.assertRaises(ValueError):
+            self.calculator.natural_logarithm(x)
+
+    def tearDown(self):
+        pass
+
+
+class CalculatorSineTestCase(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_sine_with_degree(self):
+        angle_degrees = 30
+        expected_result = 0.5
+        result = self.calculator.sine(angle_degrees)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_sine_with_radian(self):
+        angle_radians = math.pi / 6
+        expected_result = 0.5
+        result = self.calculator.sine(math.degrees(angle_radians))
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def tearDown(self):
+        pass
+
+
+class CalculatorCosineTestCase(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_cosine_with_degree(self):
+        angle_degrees = 60
+        expected_result = 0.5
+        result = self.calculator.cosine(angle_degrees)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_cosine_with_radian(self):
+        angle_radians = math.pi / 3
+        expected_result = 0.5
+        result = self.calculator.cosine(math.degrees(angle_radians))
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def tearDown(self):
+        pass
+
+
+class CalculatorTangentTestCase(unittest.TestCase):
+    def setUp(self):
+        self.calculator = Calculator()
+
+    def test_tangent_with_degree(self):
+        angle_degrees = 45
+        expected_result = 1.0
+        result = self.calculator.tangent(angle_degrees)
+        self.assertAlmostEqual(result, expected_result, places=7)
+
+    def test_tangent_with_radian(self):
+        angle_radians = math.pi / 4
+        expected_result = 1.0
+        result = self.calculator.tangent(math.degrees(angle_radians))
+        self.assertAlmostEqual(result, expected_result, places=7)
 
     def tearDown(self):
         pass
